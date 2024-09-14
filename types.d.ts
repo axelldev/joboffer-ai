@@ -9,3 +9,9 @@ export interface JobOffer {
   salary: string
   skills: JobOfferSkill[]
 }
+
+export interface Technology {
+  id: number
+  name: string
+  image: string
+}
