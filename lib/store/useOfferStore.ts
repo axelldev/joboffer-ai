@@ -33,16 +33,16 @@ const useOfferStore = create<UseOfferStore>((set, get) => ({
         ),
       }))
     } else {
-      console.log(technology)
       set((state) => ({
         selectedTechnologies: [...state.selectedTechnologies, technology],
       }))
     }
   },
   setAutoAddTechnologies: (value: boolean) =>
-    set({
+    set((state) => ({
       autoAddTechnologies: value,
-    }),
+      selectedTechnologies: value ? [] : state.selectedTechnologies,
+    })),
 }))
 
 export default useOfferStore

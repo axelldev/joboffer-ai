@@ -2,7 +2,6 @@ import { useState } from 'react'
 import GenerateButton from '../generate-button'
 import { Textarea } from '../ui/textarea'
 import { Button } from '../ui/button'
-import { Link } from 'lucide-react'
 import useStepsStore from '@/lib/store/useStepsStore'
 
 interface Props {

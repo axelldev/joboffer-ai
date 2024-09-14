@@ -1,14 +1,26 @@
-import { type JobOffer } from '@/types'
+import { Technology, type JobOffer } from '@/types'
 
 interface GenerateJobOfferResponse {
   result: string
 }
 
-export async function generateJobOffer(description: string): Promise<JobOffer> {
+interface GenerateJobOfferData {
+  description: string
+  technologies: Technology[]
+  autoSelectTechnologies?: boolean
+}
+
+export async function generateJobOffer({
+  description,
+  technologies,
+  autoSelectTechnologies,
+}: GenerateJobOfferData): Promise<JobOffer> {
   const response = await fetch('/api/generate', {
     method: 'POST',
     body: JSON.stringify({
-      message: description,
+      description,
+      technologies,
+      autoSelectTechnologies,
     }),
   })
   const data: GenerateJobOfferResponse = await response.json()
