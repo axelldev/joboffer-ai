@@ -43,8 +43,6 @@ export default function Home() {
     })
   }
 
-  console.log(mutation.data)
-
   return (
     <TooltipProvider>
       <div className="p-3 md:p-6 lg:p-8">
