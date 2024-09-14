@@ -2,10 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --default-gradient: -webkit-linear-gradient(45deg, #00bcd4 21%, #d949e3 67%);
+  --btn-gradient: linear-gradient(to right, #00bcd4 10%, #d949e3 90%);
+}
+
 .app-title {
   /** TEXT GRADIENT */
   color: #00bcd4;
-  background-image: -webkit-linear-gradient(45deg, #00bcd4 21%, #d949e3 67%);
+  background-image: var(--default-gradient);
   background-clip: text;
   -webkit-background-clip: text;
   text-fill-color: transparent;
@@ -66,5 +71,11 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+  }
+}
+
+@layer components {
+  .btn-grad {
+    background-image: var(--btn-gradient);
   }
 }

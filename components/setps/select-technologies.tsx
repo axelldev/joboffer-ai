@@ -1,8 +1,11 @@
 'use client'
 
-import { cn } from '@/lib/utils'
 import useOfferStore from '@/lib/store/useOfferStore'
+import useStepsStore from '@/lib/store/useStepsStore'
+import { cn } from '@/lib/utils'
 import Image from 'next/image'
+import { Button } from '../ui/button'
+import AutoSelectTechnologiesButton from './auto-select-technologies-button'
 
 const technologies = [
   {
@@ -32,6 +35,13 @@ export default function SelectTechnologies() {
     (state) => state,
   )
 
+  const { nextStep } = useStepsStore((state) => state)
+
+  const handleClickAutoSelect = () => {
+    setAutoAddTechnologies(true)
+    nextStep()
+  }
+
   return (
     <section className="container">
       <div className="flex flex-col items-center">
@@ -47,7 +57,9 @@ export default function SelectTechnologies() {
                 `flex flex-col bg-card w-[100px] h-[100px] justify-center items-center rounded-sm
                 p-6 hover:bg-indigo-300/20 cursor-pointer`,
                 {
-                  'border-2 border-indigo-300': isSelected(t.id),
+                  'border-2 border-indigo-300 bg-indigo-300/20': isSelected(
+                    t.id,
+                  ),
                 },
               )}
             >
@@ -56,16 +68,12 @@ export default function SelectTechnologies() {
             </div>
           ))}
         </div>
-        <div className="flex justify-center mt-4 font-bold md:justify-start">
-          <button
-            onClick={() => setAutoAddTechnologies(true)}
-            className="sm:text-2xl text-white/50 hover:text-indigo-300 cursor-pointer flex gap-1
-              items-center"
-          >
-            <span>Elegir las tecnologias por mi</span>
-            <span className="icon-[mingcute--ai-line] bg" />
-          </button>
-        </div>
+
+        <AutoSelectTechnologiesButton onClick={handleClickAutoSelect} />
+
+        <Button className="mt-8 py-2 w-[300px]" onClick={() => nextStep()}>
+          Continuar
+        </Button>
       </div>
     </section>
   )
